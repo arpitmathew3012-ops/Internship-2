@@ -8,9 +8,16 @@ use Illuminate\Http\Request;
 
 class MovieController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $movies = Movie::all();
+        $query = Movie::query();
+
+        if ($request->filled('search')) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        $movies = $query->get();
+
         return view('admin.movies.index', compact('movies'));
     }
 
