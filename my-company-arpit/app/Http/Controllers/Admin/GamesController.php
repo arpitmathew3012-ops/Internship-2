@@ -10,10 +10,22 @@ use Illuminate\Support\Facades\Storage;
 
 class GamesController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $games = Game::all();
-        return view('admin.games.index', compact('games'));
+        $query = Game::query();
+
+        if ($request->filled('search')) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        if ($request->filled('genre')) {
+            $query->where('genre', $request->genre);
+        }
+
+        $games = $query->get();
+        $genres = Game::whereNotNull('genre')->distinct()->pluck('genre');
+
+        return view('admin.games.index', compact('games', 'genres'));
     }
 
     public function create()
