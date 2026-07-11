@@ -36,15 +36,3 @@ Route::post('save-movie', [MovieController::class, 'store'])->name('movies.store
 Route::get('edit-movie/{movie}', [MovieController::class, 'edit'])->name('movies.edit');
 Route::put('update-movie/{movie}', [MovieController::class, 'update'])->name('movies.update');
 Route::delete('delete-movie/{movie}', [MovieController::class, 'destroy'])->name('movies.destroy');
-Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
-Route::post('register', [RegisterController::class, 'register']);
-
-Route::get('games', [GamesController::class, 'index'])->name('games');
-Route::get('add-game', [GamesController::class, 'create'])->name('games.create');
-Route::post('save-game', [GamesController::class, 'store'])->name('games.store');
-Route::resource('games', GamesController::class);
-
-Route::get('movies', [MovieController::class, 'index'])->name('movies');
-Route::get('add-movie', [MovieController::class, 'create'])->name('movies.create');
-Route::post('save-movie', [MovieController::class, 'store'])->name('movies.store');
-
