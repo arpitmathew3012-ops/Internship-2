@@ -18,6 +18,27 @@
         <h2>Games List</h2>
         <a href="{{ route('games.create') }}" class="btn btn-primary">Add Game</a>
     </div>
+    <form method="GET" action="{{ route('games') }}" class="row g-2 mb-3">
+    <div class="col-md-4">
+        <input type="text" name="search" class="form-control" placeholder="Search by name..." value="{{ request('search') }}">
+    </div>
+    <div class="col-md-3">
+        <select name="genre" class="form-select">
+            <option value="">All Genres</option>
+            @foreach ($genres as $genre)
+                <option value="{{ $genre }}" {{ request('genre') == $genre ? 'selected' : '' }}>{{ $genre }}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="col-md-2">
+        <button type="submit" class="btn btn-secondary w-100">Filter</button>
+    </div>
+    @if(request('search') || request('genre'))
+        <div class="col-md-2">
+            <a href="{{ route('games') }}" class="btn btn-outline-secondary w-100">Clear</a>
+        </div>
+    @endif
+</form>
     <table id="games-table" class="table table-striped">
         <thead>
             <tr>
