@@ -18,7 +18,7 @@
                     <div class="card-body"
                         onclick="window.location='{{ URL::route('movies') }}'"
                         style="cursor: pointer; background-color: #4CAF50; color: white; padding: 16px; border-radius: 8px;">
-                        <div>Games</div>
+                        <div>Movies</div>
                     </div>
                 </div>
 
@@ -26,7 +26,7 @@
                     <div class="card-body"
                         onclick="window.location='{{ URL::route('games') }}'"
                         style="cursor: pointer; background-color: #4cafaf; color: white; padding: 16px; border-radius: 8px;">
-                        <div>Movies</div>
+                        <div>Games</div>
                     </div>
                 </div>
             </div>
