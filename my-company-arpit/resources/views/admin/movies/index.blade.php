@@ -18,6 +18,7 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Release Date</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -26,6 +27,14 @@
                     <td>{{ $movie->id }}</td>
                     <td>{{ $movie->name }}</td>
                     <td>{{ $movie->release_date }}</td>
+                    <td>
+    <a href="{{ route('movies.edit', $movie->id) }}" class="btn btn-sm btn-warning">Edit</a>
+    <form action="{{ route('movies.destroy', $movie->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this movie?');" style="display:inline-block">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+    </form>
+</td>
                 </tr>
             @endforeach
         </tbody>
