@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="card-body"
-                        onclick="window.location='{{ URL::route('games') }}'"
+                        onclick="window.location='{{ URL::route('movies') }}'"
                         style="cursor: pointer; background-color: #4CAF50; color: white; padding: 16px; border-radius: 8px;">
                         <div>Games</div>
                     </div>
