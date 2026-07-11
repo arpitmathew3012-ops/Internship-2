@@ -10,31 +10,55 @@ class MovieController extends Controller
 {
     public function index()
     {
-        $movies = Movie::all(); // Or paginate if needed
+        $movies = Movie::all();
         return view('admin.movies.index', compact('movies'));
     }
 
     public function create()
     {
-        return view('admin.movies.create'); // You can create the form Blade next
+        return view('admin.movies.create');
     }
 
     public function store(Request $request)
     {
         try {
-            //code...
-        
             $validated = $request->validate([
                 'name' => 'required|string|max:255',
                 'release_date' => 'required|date',
             ]);
 
-            // Create and save the new game
             Movie::create($validated);
         } catch (\Throwable $th) {
             dd($th->getMessage());
         }
-        // Redirect back to the games list with a success message
+
         return redirect()->route('movies')->with('success', 'Movie added successfully.');
-    } 
+    }
+
+    public function edit(Movie $movie)
+    {
+        return view('admin.movies.edit', compact('movie'));
+    }
+
+    public function update(Request $request, Movie $movie)
+    {
+        try {
+            $validated = $request->validate([
+                'name' => 'required|string|max:255',
+                'release_date' => 'required|date',
+            ]);
+
+            $movie->update($validated);
+
+            return redirect()->route('movies')->with('success', 'Movie updated successfully.');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Something went wrong. Please try again.')->withInput();
+        }
+    }
+
+    public function destroy(Movie $movie)
+    {
+        $movie->delete();
+        return redirect()->route('movies')->with('success', 'Movie deleted successfully.');
+    }
 }
