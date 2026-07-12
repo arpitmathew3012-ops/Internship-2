@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
@@ -36,3 +37,11 @@ Route::post('save-movie', [MovieController::class, 'store'])->name('movies.store
 Route::get('edit-movie/{movie}', [MovieController::class, 'edit'])->name('movies.edit');
 Route::put('update-movie/{movie}', [MovieController::class, 'update'])->name('movies.update');
 Route::delete('delete-movie/{movie}', [MovieController::class, 'destroy'])->name('movies.destroy');
+
+// Reviews CRUD
+Route::get('reviews', [ReviewController::class, 'index'])->name('reviews');
+Route::get('add-review', [ReviewController::class, 'create'])->name('reviews.create');
+Route::post('save-review', [ReviewController::class, 'store'])->name('reviews.store');
+Route::get('edit-review/{review}', [ReviewController::class, 'edit'])->name('reviews.edit');
+Route::put('update-review/{review}', [ReviewController::class, 'update'])->name('reviews.update');
+Route::delete('delete-review/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
