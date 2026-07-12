@@ -14,4 +14,9 @@ class Game extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function reviews()
+    {
+        return $this->morphMany(Review::class, 'reviewable');
+    }
 }
